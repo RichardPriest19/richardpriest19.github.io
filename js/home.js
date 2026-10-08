@@ -73,7 +73,7 @@
       $$('button', dots).forEach((d, i) => d.classList.toggle('on', i === cur));
       capT.textContent = SHOWCASE[cur][1]; capS.textContent = SHOWCASE[cur][2];
     };
-    const play = () => { clearInterval(timer); if (!reduceMotion) timer = setInterval(() => show(cur + 1), 3800); };
+    const play = () => { clearInterval(timer); if (!reduceMotion) timer = setInterval(() => show(cur + 1), 3200); };
     dots.addEventListener('click', e => { const b = e.target.closest('button'); if (b) { show(+b.dataset.i); play(); } });
     stack.addEventListener('click', () => openLightbox(SHOWCASE.map(s => ({ src: s[0], caption: `${s[1]} — ${s[2]}` })), cur));
     stack.style.cursor = 'zoom-in';

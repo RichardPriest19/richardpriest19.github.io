@@ -36,6 +36,22 @@
   // Year
   $$('[data-year]').forEach(el => { el.textContent = new Date().getFullYear(); });
 
+  // Back to top: appears once the visitor has scrolled past the first screen.
+  const toTop = document.createElement('button');
+  toTop.type = 'button';
+  toTop.className = 'to-top';
+  toTop.setAttribute('aria-label', 'Back to top of page');
+  toTop.title = 'Back to top';
+  toTop.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>';
+  document.body.appendChild(toTop);
+  const syncToTop = () => toTop.classList.toggle('show', window.scrollY > window.innerHeight * 0.6);
+  syncToTop();
+  window.addEventListener('scroll', syncToTop, { passive: true });
+  toTop.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    const skip = $('.logo'); if (skip) skip.focus({ preventScroll: true });
+  });
+
   // Static hosting (GitHub Pages): forms are emailed to Richard via Web3Forms.
   window.sendFormEmail = async function ({ subject, name, email, fields }) {
     const key = window.SITE && window.SITE.web3formsKey;
