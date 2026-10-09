@@ -629,3 +629,4 @@ section { position: relative; }
 }
 .case-followup { margin-top: 18px; padding: 14px 16px; border-radius: 12px; background: #f1f6ff; border-left: 3px solid var(--accent); font-size: 14.5px; color: #364156; }
 .case-followup b { display: block; margin-bottom: 4px; font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); }
+.roadmap-foot { margin-top: 22px; padding-top: 18px; border-top: 1px solid rgba(255, 255, 255, .1); font-size: 15px; color: #dbe6f7; font-weight: 500; }
