@@ -184,6 +184,52 @@
     window.observeReveals();
   }
 
+  // ---------- case studies ----------
+  const caseTabs = $('.case-tabs'), casePanels = $('.case-panels');
+  if (caseTabs && casePanels && window.CASE_STUDIES) {
+    // [[...]] marks a detail still to be confirmed; shown highlighted so it is never mistaken for fact.
+    const fill = s => esc(s).replace(/\[\[(.+?)\]\]/g, '<span class="tbc">$1</span>');
+    const ICON_CLOCK = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>';
+    const ICON_BOLT = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg>';
+    caseTabs.innerHTML = CASE_STUDIES.map((c, i) =>
+      `<button class="case-tab" type="button" role="tab" id="case-tab-${c.id}" aria-controls="case-${c.id}" aria-selected="${i === 0}"><small>${fill(c.org)}</small><b>${fill(c.system)}</b></button>`).join('');
+    casePanels.innerHTML = CASE_STUDIES.map((c, i) => `
+      <article class="case" id="case-${c.id}" role="tabpanel" aria-labelledby="case-tab-${c.id}" ${i === 0 ? '' : 'hidden'}>
+        <div class="case-main">
+          <div class="case-meta">
+            <span class="case-chip">${ICON_CLOCK}${fill(c.when)}</span>
+            <span class="case-chip pace">${ICON_BOLT}${fill(c.pace)}</span>
+          </div>
+          <h3>${fill(c.system)}<span>${fill(c.org)}</span></h3>
+          <p class="case-label">The situation</p>
+          <p class="case-situation">${fill(c.situation)}</p>
+          <p class="case-label">What I did</p>
+          <ul class="case-did">${c.did.map(d => `<li>${fill(d)}</li>`).join('')}</ul>
+          ${c.followUp ? `<div class="case-followup"><b>Applied again</b>${fill(c.followUp)}</div>` : ''}
+          <p class="case-label">Who was involved</p>
+          <div class="case-people">${c.people.map(p => `<span>${fill(p)}</span>`).join('')}</div>
+        </div>
+        <aside class="case-side">
+          <img src="${c.image}" alt="" loading="lazy" decoding="async">
+          <div class="case-results">${c.results.map(r => `<div class="case-result"><b>${fill(r.value)}</b><span>${fill(r.label)}</span></div>`).join('')}</div>
+          ${c.voice ? `<blockquote class="case-voice">${fill(c.voice)}</blockquote>` : ''}
+        </aside>
+      </article>`).join('');
+    const tabs = $$('.case-tab', caseTabs);
+    const select = tab => {
+      tabs.forEach(t => t.setAttribute('aria-selected', String(t === tab)));
+      $$('.case', casePanels).forEach(p => { p.hidden = p.id !== tab.getAttribute('aria-controls'); });
+    };
+    tabs.forEach((t, i) => {
+      t.addEventListener('click', () => select(t));
+      t.addEventListener('keydown', e => {
+        const n = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+        if (!n) return;
+        const next = tabs[(i + n + tabs.length) % tabs.length]; next.focus(); select(next);
+      });
+    });
+  }
+
   // ---------- gallery marquee ----------
   const track = $('.marquee-track');
   if (track) {
