@@ -66,10 +66,15 @@
     .tile.visited .done { display: block; }
 
     /* case slides */
-    .case-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; }
-    .case-head h2 { margin-top: 10px; font-size: clamp(30px, 3.6vw, 56px); }
+    .case-head { display: block; }
+    /* One line; fitHeading() shrinks the size if a title is too long for the screen. */
+    .case-head h2 { margin-top: 10px; font-size: clamp(30px, 3.6vw, 56px); white-space: nowrap; }
     .case-head .org { margin-top: 6px; font-size: clamp(16px, 1.4vw, 22px); color: var(--muted); font-weight: 600; }
-    .chips { display: flex; flex-wrap: wrap; gap: 10px; justify-content: flex-end; }
+    .chips { display: flex; flex-wrap: wrap; gap: 10px; }
+    .case-head .chips { margin-top: 14px; }
+    .case-head .meta { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 20px; margin-top: 6px; }
+    .case-head .meta .org { margin-top: 0; }
+    .case-head .meta .chips { margin-top: 0; }
     .chip { padding: 8px 14px; border-radius: 99px; border: 1px solid rgba(255,255,255,.16); font-size: clamp(13px, 1vw, 16px); font-weight: 600; white-space: nowrap; }
     .chip.pace { background: rgba(59,130,246,.18); border-color: rgba(122,167,255,.4); color: #cfe0ff; }
     .steps { display: flex; gap: 6px; margin-top: clamp(16px, 2.6vh, 28px); }
@@ -158,12 +163,9 @@
     function head(c, i) {
       return `
         <div class="case-head">
-          <div>
-            <p class="kicker">Case study 0${i + 1} · ${STEPS[step]}</p>
-            <h2>${esc(c.system)}</h2>
-            <p class="org">${esc(c.org)}</p>
-          </div>
-          <div class="chips"><span class="chip">${esc(c.when)}</span><span class="chip pace">${esc(c.pace)}</span></div>
+          <p class="kicker">Case study 0${i + 1} · ${STEPS[step]}</p>
+          <h2>${esc(c.system)}</h2>
+          <div class="meta"><p class="org">${esc(c.org)}</p><div class="chips"><span class="chip">${esc(c.when)}</span><span class="chip pace">${esc(c.pace)}</span></div></div>
         </div>
         <div class="steps">${STEPS.map((s, k) => `<span class="${k <= step ? 'on' : ''}"></span>`).join('')}</div>`;
     }
@@ -186,9 +188,20 @@
         </div>`;
     }
 
+    function fitHeading() {
+      const h = slide.querySelector('.case-head h2');
+      if (!h) return;
+      h.style.fontSize = '';
+      let size = parseFloat(getComputedStyle(h).fontSize);
+      while (h.scrollWidth > h.clientWidth + 1 && size > 18) { size -= 1; h.style.fontSize = size + 'px'; }
+    }
+    window.addEventListener('resize', fitHeading);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitHeading);
+
     function render() {
       slide.style.animation = 'none'; void slide.offsetWidth; slide.style.animation = '';
       slide.innerHTML = cur === null ? menu() : caseSlide(CASES[cur], cur);
+      fitHeading();
       const h = cur === null ? '' : `#${CASES[cur].id}/${step + 1}`;
       if (location.hash !== h) history.replaceState(null, '', h || location.pathname + location.search);
       document.title = cur === null ? 'Case Studies — Richard Priest' : `${CASES[cur].tab || CASES[cur].system} — Richard Priest`;
