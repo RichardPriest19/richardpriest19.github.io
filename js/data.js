@@ -189,7 +189,7 @@ window.CREDENTIALS = [
 window.CASE_STUDIES = [
   {
     id: 'vetpartners',
-    org: 'VetPartners', system: 'Practice onboarding at acquisition pace',
+    org: 'VetPartners', system: 'Vet practice onboarding at acquisition pace',
     when: 'March – September 2022', pace: '~2 practices a week',
     image: 'img/vetpartners.webp',
     situation: 'The UK’s fastest-growing veterinary group was acquiring around 80 practices a year. Every new practice arrived with its own kit, network, systems and habits — and each one had to be brought safely into the group without interrupting a single day of pet care. Many had been built from the ground up by their partners, so joining a larger organisation, and handing parts of the business to others, was a daunting step for them.',
