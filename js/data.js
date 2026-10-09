@@ -3,15 +3,15 @@
 window.CAREER = [
   {
     era: 'Recent transformation work',
-    when: 'July 2026 – Present', title: 'Principal Technology Consultant (Contract)', org: 'Enselia',
+    when: 'July 2026 – September 2026', title: 'Principal Technology Consultant (Contract)', org: 'Enselia',
     ctx: '13-week contract, building an IT function from scratch for an organisation part-way through charity registration.',
-    tags: ['tech'], images: [], placeholder: { title: 'Enselia', sub: 'Current assignment' },
+    tags: ['tech'], images: [], placeholder: { title: 'Enselia', sub: 'July – September 2026' },
     points: [
-      'Reviewing the existing technology architecture and rolling out improvements as the assignment progresses.',
-      'Assessing the managed service provider relationship and cybersecurity posture, and writing IT policy and procedure where none previously existed.',
-      'Profiling the current provider’s performance, coverage and value for money to build the case for a competitive tender, should the board wish to test the market.',
-      'Established a secure SharePoint client portal and advising the board on the future shape, structure and resourcing of the technology function.',
-      'Negotiating a move onto Microsoft charity licensing to reduce licence spend through not-for-profit pricing.',
+      'Reviewed the existing technology architecture and rolled out improvements as the assignment progressed.',
+      'Assessed the managed service provider relationship and cybersecurity posture, and wrote IT policy and procedure where none previously existed.',
+      'Profiled the provider’s performance, coverage and value for money to build the case for a competitive tender, should the board wish to test the market.',
+      'Established a secure SharePoint client portal and advised the board on the future shape, structure and resourcing of the technology function.',
+      'Led negotiations to move onto Microsoft charity licensing, reducing licence spend through not-for-profit pricing.',
     ],
   },
   {
