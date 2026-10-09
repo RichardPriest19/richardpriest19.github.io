@@ -212,7 +212,7 @@ window.CASE_STUDIES = [
   },
   {
     id: 'hubspot',
-    org: 'Armstrong Watson', system: 'HubSpot CRM',
+    org: 'Armstrong Watson', system: 'HubSpot Marketing, Content & Operations Hubs', tab: 'HubSpot hubs',
     when: 'October 2024 – February 2025', pace: 'Live in about four months',
     image: 'img/armstrong-watson.webp',
     situation: 'The C-suite was driving a firm-wide move onto Microsoft Dynamics. For marketing, though, Dynamics did not fit without heavy modification, and the firm did not have strong in-house Dynamics development skills to build and maintain that. HubSpot was chosen for marketing instead — but the decision had been made before I arrived, the relationship between marketing and technology had broken down, and campaigns and leads were the firm’s key source of new business. Marketing could not afford for this to go wrong.',
@@ -221,13 +221,14 @@ window.CASE_STUDIES = [
       'Took on HubSpot from my first day at Armstrong Watson, inheriting a decision made before I joined and a strained relationship between marketing and the previous head of technology.',
       'Rebuilt trust first: worked closely with the Marketing Director and his team, listened to what they needed from their main source of new business, and turned a negative view of the technology team into a working partnership.',
       'Got hands-on with the data, making sure the campaign and lead data that had passed through Microsoft Dynamics flowed back into HubSpot seamlessly.',
-      'Delivered HubSpot fully commissioned, so marketing could run its campaigns and manage leads on a platform that suited them, without costly Dynamics customisation.',
+      'Delivered three HubSpot hubs fully commissioned — Marketing Hub, Content Hub and Operations Hub — so marketing could run its campaigns and manage leads on a platform that suited them, without costly Dynamics customisation.',
+      'Explored HubSpot Service Hub with the business as a possible next step.',
     ],
     results: [
       { value: 'Day 1', label: 'my first priority on joining the firm' },
       { value: 'Seamless', label: 'return of campaign and lead data from Dynamics to HubSpot' },
       { value: 'Rebuilt', label: 'relationship between marketing and technology' },
-      { value: 'Live', label: 'HubSpot fully commissioned for the firm’s key source of new business' },
+      { value: '3 hubs', label: 'Marketing, Content and Operations Hubs fully commissioned' },
     ],
   },
   {
