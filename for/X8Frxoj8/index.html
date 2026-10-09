@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow, noarchive">
+  <meta name="referrer" content="no-referrer">
+  <title>Richard Priest</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%233b82f6'/%3E%3Ctext x='32' y='42' font-family='Arial' font-weight='700' font-size='26' text-anchor='middle' fill='white'%3ERP%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/site.css">
+  <style>
+    .emp-hero { padding: 140px 0 70px; }
+    .emp-hero .kicker { color: var(--accent-light); }
+    .emp-hero h1 { margin-top: 14px; font-size: clamp(36px, 4.6vw, 60px); }
+    .emp-hero h1 span { display: block; margin-top: 8px; font-size: .55em; color: #9fb3d4; font-weight: 600; }
+    .emp-hero p.intro { margin-top: 22px; max-width: 760px; font-size: clamp(17px, 1.5vw, 20px); color: #c3cfe3; line-height: 1.6; }
+    .emp-hero .hero-actions { margin-top: 30px; }
+    .built { display: flex; gap: 22px; align-items: flex-start; padding: 30px 32px; border-radius: 22px; background: #fff; border: 1px solid var(--line); box-shadow: var(--shadow); }
+    .built .ico { flex: none; width: 54px; height: 54px; border-radius: 15px; display: grid; place-items: center; background: #e8f0ff; color: var(--accent); }
+    .built .ico svg { width: 26px; height: 26px; }
+    .built h3 { font-size: 22px; }
+    .built p { margin-top: 8px; font-size: 16.5px; color: #364156; line-height: 1.6; }
+    .case-stack { display: grid; gap: 26px; }
+    .locked { min-height: 100vh; display: grid; place-items: center; padding: 24px; text-align: center; color: #c3cfe3; background: var(--navy); }
+    .locked h1 { color: #fff; font-size: 30px; }
+    .locked p { margin-top: 12px; }
+    .locked a { color: var(--accent-light); }
+    @media (max-width: 600px) { .built { flex-direction: column; padding: 24px 20px; } .emp-hero { padding: 120px 0 56px; } }
+  </style>
+</head>
+<body>
+  <div id="app"></div>
+  <!-- CV DOWNLOAD MODAL -->
+  <div class="modal" id="cv-modal" hidden role="dialog" aria-modal="true" aria-labelledby="cv-title">
+    <div class="modal-backdrop" data-close-modal></div>
+    <div class="modal-dialog">
+      <button class="modal-close" type="button" data-close-modal aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+      <div class="cv-form-view">
+        <h2 id="cv-title">Download my CV</h2>
+        <p class="intro">Please tell me who you are — it helps me follow up with the right information. Your download starts straight away.</p>
+        <form class="form" id="cv-form" novalidate>
+          <div class="form-error" role="alert" hidden></div>
+          <div class="form-row">
+            <div class="field"><label for="cv-name">Full name</label><input id="cv-name" name="name" autocomplete="name" required></div>
+            <div class="field"><label for="cv-email">Work email</label><input id="cv-email" name="email" type="email" autocomplete="email" required></div>
+          </div>
+          <div class="form-row">
+            <div class="field"><label for="cv-org">Organisation</label><input id="cv-org" name="organisation" autocomplete="organization" required></div>
+            <div class="field"><label for="cv-title-in">Job title <span class="opt">(optional)</span></label><input id="cv-title-in" name="jobTitle" autocomplete="organization-title"></div>
+          </div>
+          <div class="field">
+            <label for="cv-reason">Reason for downloading <span class="opt">(optional)</span></label>
+            <select id="cv-reason" name="reason">
+              <option value="">Please choose…</option>
+              <option>Recruiting for a permanent role</option>
+              <option>Executive search / recruitment agency</option>
+              <option>Interim or contract requirement</option>
+              <option>Fractional IT Director support</option>
+              <option>Networking or general interest</option>
+            </select>
+          </div>
+          <div class="hp" aria-hidden="true"><label>Website<input name="website" tabindex="-1" autocomplete="off"></label></div>
+          <label class="check"><input type="checkbox" name="consent">I am happy for Richard to keep a record of these details and contact me about my enquiry.</label>
+          <button class="btn btn-dark" type="submit" data-label="Download CV">Download CV</button>
+          <p class="privacy-note">Your details are used only to record who has requested the CV. They are never shared or sold.</p>
+        </form>
+      </div>
+      <div class="cv-done-view success" hidden>
+        <div class="success-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m5 12 5 5L20 7"/></svg></div>
+        <h2>Thank you, <span class="cv-first-name"></span>.</h2>
+        <p>Your download of <strong>Richard_Priest_CV.docx</strong> has started. If it did not, you can <button type="button" data-cv-again style="background:none;border:0;padding:0;color:var(--brand);font-weight:600;text-decoration:underline">request it again</button>.</p>
+        <a class="btn btn-outline" href="/contact">Get in touch</a>
+      </div>
+    </div>
+  </div>
+
+
+  <script src="/js/site-config.js"></script>
+  <script src="/js/data.js"></script>
+  <script>
+  (async function () {
+    const PAYLOAD = {"enc":{"iv":"JGufVQyLLGSQgUlZ","ct":"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"}};
+    const app = document.getElementById('app');
+    const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+    const b64 = s => Uint8Array.from(atob(s.replace(/-/g, '+').replace(/_/g, '/')), c => c.charCodeAt(0));
+
+    function locked() {
+      app.innerHTML = `<div class="locked"><div><h1>This page is private</h1><p>Please use the full link you were sent, or visit <a href="/">richardpriest19.github.io</a>.</p></div></div>`;
+    }
+
+    let data = PAYLOAD && PAYLOAD.plain;
+    if (!data && PAYLOAD && PAYLOAD.enc) {
+      try {
+        const k = new URLSearchParams(location.hash.slice(1)).get('k');
+        const key = await crypto.subtle.importKey('raw', b64(k), 'AES-GCM', false, ['decrypt']);
+        const pt = await crypto.subtle.decrypt({ name: 'AES-GCM', iv: b64(PAYLOAD.enc.iv) }, key, b64(PAYLOAD.enc.ct));
+        data = JSON.parse(new TextDecoder().decode(pt));
+      } catch { return locked(); }
+    }
+    if (!data) return locked();
+
+    document.title = `${data.title} — Richard Priest`;
+    const cases = (data.caseOrder || []).map(id => (window.CASE_STUDIES || []).find(c => c.id === id)).filter(Boolean);
+    const ARROW = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-6-6 6 6-6 6"/></svg>';
+    const DOWN = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12m0 0-5-5m5 5 5-5M4 21h16"/></svg>';
+
+    app.innerHTML = `
+      <header class="site-header solid">
+        <nav class="nav wrap" aria-label="Main">
+          <a class="logo" href="/"><span class="logo-mark">RP</span><span>Richard Priest<small>CIO · IT Director</small></span></a>
+          <ul class="nav-links" style="opacity:1;transform:none;pointer-events:auto;position:static;flex-direction:row;padding:0;background:none">
+            <li><button class="btn btn-primary" type="button" data-open-cv>Download CV</button></li>
+          </ul>
+        </nav>
+      </header>
+      <main>
+        <section class="page-hero emp-hero">
+          <div class="hero-bg" aria-hidden="true"><span class="blob b1"></span><span class="blob b2"></span></div>
+          <div class="hero-grid-lines" aria-hidden="true"></div>
+          <div class="wrap">
+            <p class="kicker">${esc(data.title)}</p>
+            <h1>Richard Priest<span>${esc(data.role)}</span></h1>
+            <p class="intro">${esc(data.intro)}</p>
+            <div class="hero-actions">
+              <button class="btn btn-primary" type="button" data-open-cv>${DOWN}Download my CV</button>
+              <a class="btn btn-ghost" href="/contact">Start a conversation ${ARROW}</a>
+            </div>
+          </div>
+        </section>
+
+        ${data.why && data.why.length ? `
+        <section class="section">
+          <div class="wrap">
+            <div class="section-head"><p class="kicker">${esc(data.whyTitle || 'Why this role')}</p></div>
+            <div class="challenge-grid">${data.why.map((w, i) => `
+              <article class="challenge"><span class="challenge-no">0${i + 1}</span><h3>${esc(w.title)}</h3><p class="challenge-what" style="margin-bottom:0">${esc(w.text)}</p></article>`).join('')}
+            </div>
+          </div>
+        </section>` : ''}
+
+        ${data.plan && data.plan.length ? `
+        <section class="section alt" style="padding-top:70px;padding-bottom:70px">
+          <div class="wrap">
+            <div class="roadmap">
+              <div class="roadmap-head"><h3>${esc(data.planTitle || 'How I would start')}</h3></div>
+              <ol class="roadmap-steps">${data.plan.map(p => `
+                <li><span class="roadmap-year">${esc(p.when)}</span><b>${esc(p.title)}</b><span>${esc(p.text)}</span></li>`).join('')}
+              </ol>
+            </div>
+            ${data.built ? `
+            <div class="built" style="margin-top:26px">
+              <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m14.7 6.3 3 3M4 20l4.5-1 10-10a2.1 2.1 0 0 0-3-3l-10 10z"/></svg></span>
+              <div><h3>${esc(data.builtTitle || 'Already hands-on')}</h3><p>${esc(data.built)}</p></div>
+            </div>` : ''}
+          </div>
+        </section>` : ''}
+
+        ${cases.length ? `
+        <section class="section">
+          <div class="wrap">
+            <div class="section-head"><p class="kicker">Most relevant case studies</p><h2>Hands-on, at pace.</h2></div>
+            <div class="case-stack">${cases.map(c => `
+              <article class="case">
+                <div class="case-main">
+                  <div class="case-meta"><span class="case-chip">${esc(c.when)}</span><span class="case-chip pace">${esc(c.pace)}</span></div>
+                  <h3>${esc(c.system)}<span>${esc(c.org)}</span></h3>
+                  <p class="case-label">The situation</p><p class="case-situation">${esc(c.situation)}</p>
+                  <p class="case-label">What I did</p><ul class="case-did">${c.did.map(d => `<li>${esc(d)}</li>`).join('')}</ul>
+                  ${c.followUp ? `<div class="case-followup"><b>Applied again</b>${esc(c.followUp)}</div>` : ''}
+                  <p class="case-label">Who was involved</p><div class="case-people">${c.people.map(p => `<span>${esc(p)}</span>`).join('')}</div>
+                </div>
+                <aside class="case-side">
+                  <img src="/${esc(c.image)}" alt="" loading="lazy">
+                  <div class="case-results">${c.results.map(r => `<div class="case-result"><b>${esc(r.value)}</b><span>${esc(r.label)}</span></div>`).join('')}</div>
+                  ${c.voice ? `<blockquote class="case-voice">${esc(c.voice)}</blockquote>` : ''}
+                </aside>
+              </article>`).join('')}
+            </div>
+          </div>
+        </section>` : ''}
+
+        <section class="section" style="padding-top:0">
+          <div class="wrap">
+            <div class="cta">
+              <div><h2>Let's talk.</h2><p>I would welcome the chance to discuss the role. My full career, approach and every case study are on my website.</p></div>
+              <div class="cta-actions">
+                <a class="btn btn-primary" href="/contact">Get in touch ${ARROW}</a>
+                <a class="btn btn-ghost" href="/">See the full website</a>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+      <footer class="site-footer"><div class="wrap"><div class="footer-note" style="margin-top:0;border-top:0;padding-top:0"><span>© <span data-year></span> Richard Priest · RichardPriest19@gmail.com</span><span>Prepared personally for ${esc(data.org)}.</span></div></div></footer>`;
+    // Load the shared site behaviour (CV dialog, back-to-top) only now the page content exists.
+    const s = document.createElement('script'); s.src = '/js/common.js'; document.body.appendChild(s);
+  })();
+  </script>
+</body>
+</html>
