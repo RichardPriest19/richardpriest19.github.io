@@ -4,7 +4,7 @@ window.CAREER = [
   {
     era: 'Recent transformation work',
     when: 'July 2026 – September 2026', title: 'Principal Technology Consultant (Contract)', org: 'Enselia',
-    ctx: '13-week contract, building an IT function from scratch for an organisation part-way through charity registration.',
+    ctx: '13-week contract with a charity part-way through registration, acting as its fractional IT leader and building the IT function from scratch.',
     tags: ['tech'], images: [], placeholder: { title: 'Enselia', sub: 'July – September 2026' },
     points: [
       'Reviewed the existing technology architecture and rolled out improvements as the assignment progressed.',
@@ -12,6 +12,11 @@ window.CAREER = [
       'Profiled the provider’s performance, coverage and value for money to build the case for a competitive tender, should the board wish to test the market.',
       'Established a secure SharePoint client portal and advised the board on the future shape, structure and resourcing of the technology function.',
       'Led negotiations to move onto Microsoft charity licensing, reducing licence spend through not-for-profit pricing.',
+      'Worked closely with the Senior Leadership Group, the Target Operating Model programme team, finance, people and HR, operations and external technology partners, so that technology was treated as an organisational enabler rather than a back-office cost.',
+      'Acted as principal adviser to the Senior Leadership Group on IT strategy, technology risk, cyber security, systems investment, supplier performance and digital transformation, turning technical issues into clear, practical advice for non-technical colleagues.',
+      'Developed a clear, prioritised and affordable technology roadmap, linked directly to organisational strategy and operating model change, and translated Target Operating Model design decisions into practical technology requirements.',
+      'Set practical principles and guardrails for the responsible use of AI, automation and emerging technologies, and assessed where digital tools, data and AI-enabled solutions could improve IT and day-to-day operations, including building staff digital skills.',
+      'Balanced strategy with hands-on oversight of IT service delivery, including core infrastructure, devices, and identity and access management, across Microsoft 365, CRM, finance, HR, learning and fundraising systems.',
     ],
   },
   {
@@ -167,12 +172,13 @@ window.SKILLS = [
   'IT Service Management', 'Technology Procurement & Commercial Negotiation', 'Supplier & Managed Service Provider Management',
   'Infrastructure & Cloud Strategy (Microsoft Azure, M365)', 'Data Protection & GDPR', 'Business Continuity & Resilience',
   'Stakeholder & Board Engagement', 'Team Leadership & Talent Development',
+  'Responsible AI Adoption, Principles & Guardrails', 'Technology Roadmaps Linked to Strategy & Operating Model Change', 'Identity & Access Management', 'Digital Skills Development', 'Translating Technology for Non-Technical Leaders',
 ];
 
 window.SECTORS = [
   'Manufacturing & Industrial', 'Professional Services', 'Renewable Energy & Cleantech', 'Financial Services',
   'Claims Management', 'Veterinary Healthcare', 'Retail', 'Defence & Aerospace', 'Property & Real Estate',
-  'Social Housing', 'Gaming & Entertainment',
+  'Social Housing', 'Gaming & Entertainment', 'Charity & Not-for-Profit',
 ];
 
 window.CREDENTIALS = [
